@@ -2,15 +2,24 @@ package common;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
+@Component
 public class BackClass {
     HttpURLConnection connection;
     public final Logger logger = LogManager.getLogger();
-    Cert cert = new Cert();
+
+    @Autowired
+    private Cert cert;
+
+    public BackClass(Cert cert) {
+        this.cert = cert;
+    }
 
     public void setConnection(String address) {
         try {

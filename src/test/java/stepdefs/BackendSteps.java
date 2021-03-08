@@ -7,11 +7,22 @@ import io.cucumber.java.ru.Дано;
 import io.cucumber.java.ru.Когда;
 import io.cucumber.java.ru.То;
 import org.junit.Assert;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringRunner;
+import spring.TestApplication;
 
+@RunWith(SpringRunner.class)
+@ContextConfiguration(classes = TestApplication.class)
+@SpringBootTest
 
-public class BackendSteps extends BackClass {
+public class BackendSteps {
 
+    @Autowired
     private BackClass back;
+
     private Integer responseCode;
 
 

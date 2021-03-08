@@ -7,8 +7,7 @@ public class BasePage {
     //Объявление веб-драйвера
     protected WebDriver driver;
 
-    //Конструктор базового класса
-    public BasePage(WebDriver driver) {
+    public void initWebDriver(WebDriver driver) {
         this.driver = driver;
     }
 

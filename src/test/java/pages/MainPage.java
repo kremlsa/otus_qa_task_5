@@ -1,13 +1,10 @@
 package pages;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
-import javax.annotation.PostConstruct;
 
 @Component
 public class MainPage extends BasePage {
@@ -18,10 +15,6 @@ public class MainPage extends BasePage {
     private final By pass = By.cssSelector("input[type='password']");
     private final By submit = By.xpath("//*[contains(text(),'Войти')]");
     private final By myCourse = By.cssSelector(".ic-my-course");
-
-    /*public MainPage(WebDriver driver) {
-        super(driver);
-    }*/
 
     public MainPage open() {
         super.driver.get(URL);

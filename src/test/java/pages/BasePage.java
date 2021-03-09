@@ -14,18 +14,22 @@ public class BasePage {
         this.driver = driver;
     }
 
+    //Переход по адресу
     public void openURL(String url) {
         driver.get(url);
     }
 
+    //Присутствует ли элемент в DOM
     public boolean elementIsPresent(By selector) {
         return !driver.findElements(selector).isEmpty();
     }
 
+    //Виден ли элемент
     public boolean elementIsDisplayed(By selector) {
         return driver.findElement(selector).isDisplayed();
     }
 
+    //Получить title страницы
     public String getTitle() {
         return driver.getTitle();
     }

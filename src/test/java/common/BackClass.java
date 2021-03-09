@@ -9,18 +9,20 @@ import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
+//Класс для тестирования бэкэнда
 @Component
 public class BackClass {
     HttpURLConnection connection;
     public final Logger logger = LogManager.getLogger();
-
-    @Autowired
     private Cert cert;
 
+    //Инъекция класса для работы с сертификатами через конструктор
+    @Autowired
     public BackClass(Cert cert) {
         this.cert = cert;
     }
 
+    //Устанавливаем подключение к ресурсу
     public void setConnection(String address) {
         try {
             URL url = new URL(address);
@@ -32,6 +34,7 @@ public class BackClass {
         }
     }
 
+    //Получаем код http ответа
     public int getResponse() {
         try {
             return connection.getResponseCode();
@@ -41,14 +44,17 @@ public class BackClass {
         }
     }
 
+    //Создаём TLS соединение с указанным ресурсом
     public void createTLS(String subject) {
         cert.init(subject);
     }
 
+    //Получаем цепочку сертификатов ресурса
     public void getCertificates() {
         cert.getCertificates();
     }
 
+    //Ищем сертификат с указанным Common Name
     public boolean findCertificateWithCN(String subject) {
         return cert.findCert(subject);
     }

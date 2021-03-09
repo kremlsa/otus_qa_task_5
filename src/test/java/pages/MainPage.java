@@ -21,11 +21,13 @@ public class MainPage extends BasePage {
         return this;
     }
 
+    //Переход на форму аутентификации
     public MainPage auth() {
         super.driver.findElement(auth).click();
         return this;
     }
 
+    //Заполнить форму аутентификации
     public void fillAuthForm(String userName, String password) {
         (new WebDriverWait(super.driver, 5))
                 .until(ExpectedConditions.elementToBeClickable(submit));
@@ -34,6 +36,7 @@ public class MainPage extends BasePage {
         super.driver.findElement(submit).click();
     }
 
+    //Проверить успешный вход
     public boolean checkLogin() {
         return !super.driver.findElements(myCourse).isEmpty();
     }

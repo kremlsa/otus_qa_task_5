@@ -1,20 +1,19 @@
 package stepdefs;
 
 import common.BackClass;
-import common.BaseClass;
-import common.Cert;
 import io.cucumber.java.ru.Дано;
 import io.cucumber.java.ru.Когда;
 import io.cucumber.java.ru.То;
 import org.junit.Assert;
+import org.springframework.beans.factory.annotation.Autowired;
 
 
-public class BackendSteps extends BackClass {
+public class BackendSteps {
 
     private BackClass back;
     private Integer responseCode;
 
-
+    @Autowired
     public BackendSteps(BackClass back) {
         this.back = back;
     }

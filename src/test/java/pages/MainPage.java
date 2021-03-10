@@ -1,11 +1,14 @@
 package pages;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.springframework.stereotype.Component;
 
+
+@Component
 public class MainPage extends BasePage {
+
     private static final String URL = "https://otus.ru";
     private final By auth = By.cssSelector("button[data-modal-id='new-log-reg']");
     private final By login = By.cssSelector("input[type='text']");
@@ -13,30 +16,29 @@ public class MainPage extends BasePage {
     private final By submit = By.xpath("//*[contains(text(),'Войти')]");
     private final By myCourse = By.cssSelector(".ic-my-course");
 
-    public MainPage(WebDriver driver) {
-        super(driver);
-    }
-
     public MainPage open() {
-        driver.get(URL);
+        super.driver.get(URL);
         return this;
     }
 
+    //Переход на форму аутентификации
     public MainPage auth() {
-        driver.findElement(auth).click();
+        super.driver.findElement(auth).click();
         return this;
     }
 
+    //Заполнить форму аутентификации
     public void fillAuthForm(String userName, String password) {
-        (new WebDriverWait(driver, 5))
+        (new WebDriverWait(super.driver, 5))
                 .until(ExpectedConditions.elementToBeClickable(submit));
-        driver.findElement(login).sendKeys(userName);
-        driver.findElement(pass).sendKeys(password);
-        driver.findElement(submit).click();
+        super.driver.findElement(login).sendKeys(userName);
+        super.driver.findElement(pass).sendKeys(password);
+        super.driver.findElement(submit).click();
     }
 
+    //Проверить успешный вход
     public boolean checkLogin() {
-        return !driver.findElements(myCourse).isEmpty();
+        return !super.driver.findElements(myCourse).isEmpty();
     }
 
 }

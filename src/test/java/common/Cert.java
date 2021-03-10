@@ -1,14 +1,18 @@
 package common;
 
+import org.springframework.stereotype.Component;
+
 import javax.net.ssl.SSLPeerUnverifiedException;
 import javax.net.ssl.SSLSocket;
 import javax.net.ssl.SSLSocketFactory;
 import javax.security.cert.X509Certificate;
 
+@Component
 public class Cert {
     SSLSocket socket;
     X509Certificate[] chain;
 
+    //Устанавливаем TLS
     public void init(String subject) {
         try {
             SSLSocketFactory factory = (SSLSocketFactory) SSLSocketFactory.getDefault();
@@ -18,6 +22,7 @@ public class Cert {
         }
     }
 
+    //Получаем цепочку сертификатов
     public void getCertificates() {
         try {
             chain = socket.getSession().getPeerCertificateChain();
@@ -26,6 +31,7 @@ public class Cert {
         }
     }
 
+    //Поиск сертификата по Common Name
     public boolean findCert(String subject) {
         for (X509Certificate c : chain) {
             String subjectName = c.getSubjectDN().getName();

@@ -30,22 +30,4 @@ public class WebDriverFactory {
         return driver;
     }
 
-    public static WebDriver create(BrowserName browserName, WebDriver.Options options) {
-        switch (browserName) {
-            case CHROME:
-                WebDriverManager.chromedriver().setup();
-                driver = new ChromeDriver((ChromeOptions) options);
-                break;
-            case FIREFOX:
-                WebDriverManager.firefoxdriver().setup();
-                driver = new FirefoxDriver((FirefoxOptions) options);
-                break;
-            case OPERA:
-                WebDriverManager.operadriver().setup();
-                driver = new OperaDriver((OperaOptions) options);
-                break;
-        }
-        return driver;
-    }
-
 }

@@ -47,7 +47,7 @@ public class Hooks extends BaseClass{
     @After (value="@TestUI")
     public void setDown() {
         if (base.driver != null) {
-            base.driver.close();
+            base.driver.quit();
             base.logger.info("Shutdown WebDriver");
         } else {
             base.logger.error("Error WebDriver not found");

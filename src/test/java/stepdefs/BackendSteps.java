@@ -4,11 +4,13 @@ import common.BackClass;
 import io.cucumber.java.ru.Дано;
 import io.cucumber.java.ru.Когда;
 import io.cucumber.java.ru.То;
+
 import org.junit.Assert;
 import org.springframework.beans.factory.annotation.Autowired;
 
 
 public class BackendSteps extends BaseStep {
+//public class BackendSteps extends CucumberSpringContextConfig {
 
     @Autowired
     private BackClass back;

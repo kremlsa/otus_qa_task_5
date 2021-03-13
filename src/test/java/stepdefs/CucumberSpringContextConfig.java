@@ -6,8 +6,10 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ContextConfiguration;
 import task5.BddspringApplication;
 
-@ContextConfiguration(classes = Cfg.class)
-@CucumberContextConfiguration
-@SpringBootTest(classes = BddspringApplication.class)
-public class BaseStep {
+//@ContextConfiguration(classes = Cfg.class)
+//@CucumberContextConfiguration
+//@SpringBootTest(classes = BddspringApplication.class)
+public class CucumberSpringContextConfig {
+
+
 }

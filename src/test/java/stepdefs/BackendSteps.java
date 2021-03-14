@@ -4,19 +4,17 @@ import common.BackClass;
 import io.cucumber.java.ru.Дано;
 import io.cucumber.java.ru.Когда;
 import io.cucumber.java.ru.То;
+
 import org.junit.Assert;
 import org.springframework.beans.factory.annotation.Autowired;
 
 
-public class BackendSteps {
-
-    private BackClass back;
-    private Integer responseCode;
+public class BackendSteps extends BaseStep {
 
     @Autowired
-    public BackendSteps(BackClass back) {
-        this.back = back;
-    }
+    private BackClass back;
+
+    private Integer responseCode;
 
     @Дано("Анонимное подключение")
     public void setConnection() {

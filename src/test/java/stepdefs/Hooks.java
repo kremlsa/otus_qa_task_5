@@ -8,16 +8,14 @@ import factory.BrowserName;
 import factory.WebDriverFactory;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
+import org.apache.logging.log4j.Logger;
+import org.openqa.selenium.WebDriver;
 
 
-public class Hooks extends BaseClass{
+public class Hooks {
 
-    BaseClass base;
-
-    public Hooks(BaseClass base) {
-        this.base = base;
-    }
-
+    public WebDriver driver;
+    public Logger logger = BaseClass.getLogger();
 
     @Before (value="@TestUI")
     public void Setup() {
@@ -31,26 +29,26 @@ public class Hooks extends BaseClass{
 
         //Если имя браузера не было распознано корректно, то логируем предупреждение
         if (browserName == BrowserName.DEFAULT) {
-            base.logger.warn("WebDriver name from the cmdline is not recognized %" + name
+            logger.warn("WebDriver name from the cmdline is not recognized %" + name
                     + "% use Chrome");
         }
 
         //Создаём вебдрайвер через статический метод класса WebDriverFactory
-        base.driver = WebDriverFactory.create(browserName);
+        driver = WebDriverFactory.create(browserName);
         //Устанавливаем максимальный размер окна для браузера
-        base.driver.manage().window().maximize();
-        base.logger.info("Start WebDriver " + browserName.getBrowserName());
-
-        base.driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+        driver.manage().window().maximize();
+        logger.info("Start WebDriver " + browserName.getBrowserName());
+        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+        BaseClass.setDriver(driver);
     }
 
     @After (value="@TestUI")
     public void setDown() {
-        if (base.driver != null) {
-            base.driver.quit();
-            base.logger.info("Shutdown WebDriver");
+        if (driver != null) {
+            driver.quit();
+            logger.info("Shutdown WebDriver");
         } else {
-            base.logger.error("Error WebDriver not found");
+            logger.error("Error WebDriver not found");
         }
     }
 }

@@ -1,36 +1,40 @@
 package stepdefs;
 
-import common.AppConfig;
+import configSpring.Cfg;
+import org.junit.Test;
+import org.springframework.boot.test.context.SpringBootTest;
+import pages.MainPage;
 import common.BaseClass;
 import io.cucumber.java.ru.Дано;
 import io.cucumber.java.ru.И;
 import io.cucumber.java.ru.Когда;
 import io.cucumber.java.ru.То;
-import org.aeonbits.owner.ConfigFactory;
 import org.junit.Assert;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 import org.springframework.beans.factory.annotation.Autowired;
-import pages.MainPage;
+import org.springframework.beans.factory.annotation.Value;
 
 import java.util.Optional;
 
-public class LoginSteps {
+public class LoginSteps extends BaseStep{
 
-    private final MainPage mainPage;
-    private final BaseClass base;
-    private final AppConfig cfg = ConfigFactory.create(AppConfig.class);
-    String login;
-    String pass;
+    @Value("${correctLogin}")
+    private String correctLogin;
+
+    @Value("${correctPassword}")
+    String correctPassword;
 
     @Autowired
-    public LoginSteps(MainPage mainPage, BaseClass base) {
-        this.mainPage = mainPage;
-        this.base = base;
-    }
+    private MainPage mainPage;
+
+    String login;
+    String pass;
+    WebDriver driver = BaseClass.getDriver();
 
     @Дано("Страница входа")
     public void loginPage() {
-        mainPage.initWebDriver(base.driver);
+       mainPage.initWebDriver(driver);
     }
 
     @То("пользователь осуществляет вход на сайт")
@@ -47,6 +51,7 @@ public class LoginSteps {
     @И("Корректные учётные данные")
     public void setUserDefinedCreds() {
         setCreds();
+        System.out.println(login + "-" + pass);
     }
 
     @Когда("пользователь вводит логин и пароль")
@@ -68,7 +73,7 @@ public class LoginSteps {
 
     @Дано("Анонимный пользователь на сайте {string}")
     public void init(String url) {
-        mainPage.initWebDriver(base.driver);
+        mainPage.initWebDriver(driver);
         mainPage.openURL(url);
     }
 
@@ -90,9 +95,9 @@ public class LoginSteps {
 
     public void setCreds() {
         //Получаем имя пользователя из параметра -Dlogin командной строки
-        login = Optional.ofNullable(System.getProperty("login")).orElse(cfg.correctLogin());
+        login = Optional.ofNullable(System.getProperty("login")).orElse(correctLogin);
 
         //Получаем пароль из параметра -Dpassword командной строки
-        pass = Optional.ofNullable(System.getProperty("password")).orElse(cfg.correctPassword());
+        pass = Optional.ofNullable(System.getProperty("password")).orElse(correctPassword);
     }
 }

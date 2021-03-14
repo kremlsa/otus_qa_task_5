@@ -1,5 +1,3 @@
-package runner;
-
 import io.cucumber.junit.Cucumber;
 import io.cucumber.junit.CucumberOptions;
 import org.junit.runner.RunWith;
@@ -11,6 +9,6 @@ import org.junit.runner.RunWith;
         monochrome = true,
         plugin = {"pretty",
                 "html:target/cucumber-reports/task5.html"})
-public class TestRunner {
+public class RunnerTest {
 
 }

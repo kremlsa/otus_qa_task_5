@@ -17,9 +17,7 @@ import org.springframework.beans.factory.annotation.Value;
 
 import java.util.Optional;
 
-//@SpringBootTest
 public class LoginSteps extends BaseStep{
-//public class LoginSteps extends CucumberSpringContextConfig{
 
     @Value("${correctLogin}")
     private String correctLogin;

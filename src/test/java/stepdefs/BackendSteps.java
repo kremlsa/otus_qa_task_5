@@ -10,7 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 
 public class BackendSteps extends BaseStep {
-//public class BackendSteps extends CucumberSpringContextConfig {
 
     @Autowired
     private BackClass back;

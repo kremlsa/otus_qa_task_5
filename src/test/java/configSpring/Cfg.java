@@ -14,13 +14,4 @@ import org.springframework.test.annotation.DirtiesContext;
 
 public class Cfg {
 
-    /*@Bean(value = "chrome")
-    public WebDriver getDriver() {
-        return Driver.getChromeDriver();
-    }
-
-    @Bean(value = "firefox")
-    public WebDriver getOtherDriver() {
-        return Driver.getFirefoxDriver();
-    }*/
 }
